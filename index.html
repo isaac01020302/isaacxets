@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<title>ISAACXIT PANEL</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
+
+body{
+height:100vh;
+background:#700000;
+overflow:hidden;
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+touch-action:manipulation;
+}
+
+/* PARTICULAS */
+
+.particula{
+position:absolute;
+width:6px;
+height:6px;
+background:red;
+border-radius:50%;
+opacity:0.6;
+animation:subir linear infinite;
+}
+
+@keyframes subir{
+from{
+transform:translateY(100vh);
+}
+to{
+transform:translateY(-10vh);
+}
+}
+
+/* LOGIN */
+
+#login{
+text-align:center;
+}
+
+#login input{
+padding:12px;
+border:none;
+border-radius:8px;
+margin-top:10px;
+width:220px;
+}
+
+#login button{
+margin-top:10px;
+padding:12px;
+width:220px;
+background:red;
+border:none;
+color:white;
+border-radius:8px;
+cursor:pointer;
+}
+
+/* PAINEL */
+
+#painel{
+display:none;
+width:90%;
+max-width:900px;
+height:85vh;
+background:rgba(0,0,0,0.4);
+border-radius:15px;
+padding:20px;
+backdrop-filter:blur(10px);
+}
+
+/* TOPO */
+
+.topo{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:10px;
+}
+
+#contador{
+font-size:14px;
+color:#ffaaaa;
+}
+
+/* BOTÃO FF */
+
+.ff{
+padding:10px 15px;
+background:red;
+border:none;
+border-radius:8px;
+color:white;
+cursor:pointer;
+}
+
+/* SLIDER */
+
+.slider{
+margin-top:10px;
+}
+
+.slider input{
+width:100%;
+}
+
+/* FUNÇÕES */
+
+.funcoes{
+margin-top:15px;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:10px;
+}
+
+.card{
+background:rgba(0,0,0,0.45);
+padding:15px;
+border-radius:10px;
+text-align:center;
+cursor:pointer;
+transition:0.2s;
+border:1px solid rgba(255,0,0,0.3);
+}
+
+.card:hover{
+transform:scale(1.05);
+}
+
+.card.ativo{
+background:red;
+box-shadow:0 0 12px red;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- PARTICULAS -->
+
+<script>
+
+for(let i=0;i<30;i++){
+
+let p=document.createElement("div");
+
+p.className="particula";
+
+p.style.left=Math.random()*100+"%";
+p.style.animationDuration=(4+Math.random()*6)+"s";
+
+document.body.appendChild(p);
+
+}
+
+</script>
+
+<!-- LOGIN -->
+
+<div id="login">
+
+<h1>ISAACXIT</h1>
+<p>Digite a senha</p>
+
+<input id="senha" type="password">
+
+<br>
+
+<button onclick="entrar()">Entrar</button>
+
+</div>
+
+<!-- PAINEL -->
+
+<div id="painel">
+
+<div class="topo">
+
+<h2>ISAACXIT PANEL</h2>
+
+<div id="contador">0 funções ativas</div>
+
+<button class="ff" onclick="abrirFF()">Abrir Free Fire</button>
+
+</div>
+
+<div class="slider">
+
+<label>FOV CONTROL</label>
+
+<input type="range" min="0" max="100" value="50">
+
+</div>
+
+<div class="funcoes">
+
+<div class="card" onclick="toggle(this)">Sensibilidade+</div>
+<div class="card" onclick="toggle(this)">Modo Pro</div>
+<div class="card" onclick="toggle(this)">HUD Gamer</div>
+<div class="card" onclick="toggle(this)">Visual Boost</div>
+<div class="card" onclick="toggle(this)">Modo Turbo</div>
+<div class="card" onclick="toggle(this)">FPS Boost</div>
+<div class="card" onclick="toggle(this)">Modo Sniper</div>
+<div class="card" onclick="toggle(this)">Treino Mira</div>
+<div class="card" onclick="toggle(this)">Modo Arena</div>
+<div class="card" onclick="toggle(this)">Modo Squad</div>
+<div class="card" onclick="toggle(this)">Performance</div>
+<div class="card" onclick="toggle(this)">Ultra Graphics</div>
+<div class="card" onclick="toggle(this)">Quick Switch</div>
+<div class="card" onclick="toggle(this)">Reflex Mode</div>
+
+</div>
+
+</div>
+
+<script>
+
+function entrar(){
+
+let senha=document.getElementById("senha").value;
+
+if(senha==="isaac-xheat"){
+
+document.getElementById("login").style.display="none";
+document.getElementById("painel").style.display="block";
+
+}else{
+
+alert("Senha incorreta");
+
+}
+
+}
+
+function toggle(el){
+
+el.classList.toggle("ativo");
+
+let total=document.querySelectorAll(".card.ativo").length;
+
+document.getElementById("contador").innerText=total+" funções ativas";
+
+if(navigator.vibrate){
+navigator.vibrate(150);
+}
+
+}
+
+function abrirFF(){
+
+window.location.href="intent://launch#Intent;package=com.dts.freefireth;scheme=freefire;end";
+
+setTimeout(function(){
+window.location.href="https://ff.garena.com";
+},2000);
+
+}
+
+</script>
+
+</body>
+</html>
